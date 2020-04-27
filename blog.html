@@ -1,0 +1,27 @@
+---
+layout: page
+title: Blog
+mathjax: true
+---
+
+{% include mathjax.html %}
+
+<div class="message">This is a space to document problems I've solved.</div>
+
+{% assign blog_sorted = site.blog | reverse %}
+<div class="posts">
+  {% for post in blog_sorted %}
+  <div class="post">
+    <h2 class="post-title">
+      <a href="{{ post.url }}">
+        {{ post.title }}
+      </a>
+    </h2>
+
+    <span class="post-date">{{ post.date | date_to_string }}</span>
+    {% assign first_par = post.content | split: "<p>" | shift | first %}
+    {{ first_par }}
+    <p style="text-align:right"><a href="{{ post.url }}">See More</a></p>
+  </div>
+  {% endfor %}
+</div>
